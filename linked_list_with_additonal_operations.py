@@ -70,21 +70,32 @@ class UnorderdList():
                   index_of_key += 1  
         return None
 
-    def pop(self, pos):
+    def pop(self, *pos):
         index = 0
         previous = None
         current = self.head
         popped_element = None
         stop = False
-        if pos > ul.size():
-            print "Out of index error"
-            return None
-        
+        if len(pos) < 1 :
+            while current.get_next() != None:
+                previous = current
+                current = current.get_next()
+            print " pop()"     
+            popped_element  =  current.get_data()
+            previous.set_next(current.get_next())
+            return popped_element
+        pos = pos[0]
         if pos == 0:
             popped_element = current.data
             current =(current.get_next())
             self.head = current 
             return popped_element
+                          
+        if pos > ul.size():
+            print "Out of index error"
+            return None
+        
+
             
         while current != None and stop == False :
             if pos != index:
@@ -157,6 +168,6 @@ ul.display()
 
 #pop
 print "Pop called"
-ul.pop(8)
+print "Popped element:",ul.pop()
 print "After pop"
 ul.display()
