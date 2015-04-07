@@ -76,6 +76,16 @@ class UnorderdList():
         current = self.head
         popped_element = None
         stop = False
+        if pos > ul.size():
+            print "Out of index error"
+            return None
+        
+        if pos == 0:
+            popped_element = current.data
+            current =(current.get_next())
+            self.head = current 
+            return popped_element
+            
         while current != None and stop == False :
             if pos != index:
                 index += 1
@@ -147,6 +157,6 @@ ul.display()
 
 #pop
 print "Pop called"
-ul.pop(0)
+ul.pop(8)
 print "After pop"
 ul.display()
