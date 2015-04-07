@@ -69,7 +69,33 @@ class UnorderdList():
                   current = current.get_next()
                   index_of_key += 1  
         return None
-
+    
+    def insert(self, ind, item):
+        current = self.head
+        previous = None
+        position = 0
+        if ind == 0:
+            temp = Node(item)
+            temp.set_next(current)
+            self.head = temp
+            return
+            
+        while current != None:
+            if ind == position:
+                break
+            elif item != position:
+                position += 1
+                previous = current
+                current = current.get_next()
+        
+        print "position value:",position
+        if ind <= position :
+            temp = Node(item)
+            temp.set_next(current)
+            previous.set_next(temp)
+        else:
+            print "Out of index error"
+   
     def pop(self, *pos):
         index = 0
         previous = None
@@ -143,13 +169,15 @@ print temp.get_next()
 """
 
 ul = UnorderdList()
-print "first element added"
+#print "first element added"
+
 ul.add(1)
 ul.add(2)
 ul.add(3)
 ul.add(4)
 ul.add(5)
 ul.add(6)
+
 print "display called"
 ul.display()
 
@@ -166,8 +194,17 @@ ul.display()
 #Index test - This method takes an argument(key). If key is present , it returns the index of the key. Else prints an appropriate message.
 #print "index of 4",ul.index(4)
 
-#pop
-print "Pop called"
-print "Popped element:",ul.pop()
-print "After pop"
+#pop test
+#print "Pop called"
+#print "Popped element:",ul.pop()
+#print "After pop"
+#ul.display()
+
+# Insert test- Accepts two arguments(index, item). If index <len then allow insert.
+# test 1: index out of range
+#test2: index = 0
+#test3:index = last
+#test4:index = middle
+ul.insert(4, 7)
+print "After inserting "
 ul.display()
